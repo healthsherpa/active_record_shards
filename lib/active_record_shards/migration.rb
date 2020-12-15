@@ -93,7 +93,7 @@ module ActiveRecordShards
   module ActualMigrationExtension
     def migrate_with_forced_shard(direction)
       if migration_shard.blank?
-        self.migration_shard = :none
+        migration_shard = :none
       end
 
       shard = ActiveRecord::Base.current_shard_selection.shard
