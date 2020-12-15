@@ -85,7 +85,7 @@ module ActiveRecordShards
   module MigrationClassExtension
     attr_accessor :migration_shard
 
-    def shard(arg = :none)
+    def shard(arg = nil)
       self.migration_shard = arg
     end
   end
@@ -93,8 +93,7 @@ module ActiveRecordShards
   module ActualMigrationExtension
     def migrate_with_forced_shard(direction)
       if migration_shard.blank?
-        raise "#{name}: Can't run migrations without a shard spec: this may be :all, :none,
-                 or a specific shard (for data-fixups).  please call shard(arg) in your migration."
+        self.migration_shard = :none
       end
 
       shard = ActiveRecord::Base.current_shard_selection.shard
