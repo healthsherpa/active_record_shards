@@ -97,6 +97,7 @@ module ActiveRecordShards
 
     # just to ease the transition from replica to active_record_shards
     alias_method :with_slave, :on_slave
+    alias_method :on_replica, :on_slave
     alias_method :with_slave_if, :on_slave_if
     alias_method :with_slave_unless, :on_slave_unless
 
